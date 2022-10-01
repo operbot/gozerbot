@@ -19,18 +19,13 @@ sys.path.insert(0, os.getcwd())
 from gozerbot import Client, Command, Db, Event, Object, Wd, keys, printable, update
 from gozerbot import all, parse, scan, wait, cdir, elapsed, fntime
 from gozerbot.run import Cfg, docmd
-from gozerbot.mod import cmd, irc, rss
-from gozerbot.mod.irc import Config, IRC
-from gozerbot.mod.rss import Fetcher
+from gozerbot.irc import IRC
+from gozerbot.rss import Fetcher
+from gozerbot import  irc, rss
+from gozerbot.mod import cmd
 
 
 Wd.workdir = os.path.expanduser("~/.gozerbot")
-
-
-Config.nick = "gozerbot"
-Config.channel = "#gozerbot"
-Config.realname = "python3 irc bot"
-Config.username = "gozerbot"
 
 
 scan(cmd)

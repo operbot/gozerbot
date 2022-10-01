@@ -1,49 +1,98 @@
 README
 ######
 
+
 **NAME**
 
-| ``opr`` - write your own commands.
-|
+**GOZERBOT** - python3 irc bot.
+
 
 **SYNOPSIS**
 
+``gozerbot <cmd> [key=value] [key==value]``
 
-| ``oper [-c] [-i] [-r]``
-| ``oper <cmd> [key=value] [key==value]``
-|
 
 **DESCRIPTION**
 
-With **OPR** your can have the commands of a irc bot available on your cli.
-Instead of having to join a irc channel and give commands to your bot, you
-can run these commands on your shell.
-
-**OPR** is a solid, non hackable, and is intended to be programmable in a
+**GOZERBOT** is a solid, non hackable, and is intended to be programmable in a
 static, only code, no popen, fixed imports and no reading modules from a
 directory, to not have a directory to read modules from to add
 commands to the bot but include the own programmed modules directly into the
 python code, so only trusted code (your own written code) is included and
 runable. Reading random code from a directory is what gets avoided. As
 experience tells os.popen and __import__, importlib are also avoided, direct
-imports in the code is what is used.
+imports in the code is what is used, source is :ref:`here <source>`.
 
-**OPR** stores it's data on disk where objects are time versioned and the
+With **GOZERBOT** your can have the commands of a irc bot available on your cli.
+Instead of having to join a irc channel and give commands to your bot, you
+can run these commands on your shell.
+
+**GOZERBOT** stores it's data on disk where objects are time versioned and the
 last version saved on disk is served to the user layer. Files are JSON dumps
 that are read-only so thus should provide (disk) persistence. Paths carry the
 type in the path name what makes reconstruction from filename easier then
 reading type from the object.
 
-|
-
 **INSTALL**
 
-| ``pip3 install opr --upgrade --force-reinstall``
-|
+``sudo pip3 install gozerbot --upgrade --force-reinstall``
+
+
+**CONFIGURATION**
+
+**irc**
+
+``gozerbot cfg server=<server> channel=<channel> nick=<nick>``
+  
+``(*) default channel/server is #gozerbot on localhost``
+
+**sasl**
+
+``gozerbot pwd <nickservnick> <nickservpass>``
+``gozerbot cfg password=<outputfrompwd>``
+
+**users**
+
+``gozerbot met <userhost>``
+
+**rss**
+
+``gozerbot rss <url>``
+
+**24/7**
+
+``cp /usr/local/share/gozerbot/gozerbot.service /etc/systemd/system``
+``systemctl enable gozerbot --now``
+
+cfg,cmd,dlt,dne,dpl,flt,fnd,ftc,log,met,mre,nme,pwd,rem,rss,sts,tdo,thr,upt
+
+**COMMANDS**
+
+ ::
+
+  cfg - configuration
+  cmd - commands
+  dlt - remove a user
+  dne - flag todo
+  dpl - display items
+  flt - list of instances registered to the bus
+  fnd - find objects 
+  ftc - runs a fetching batch
+  log - log some text
+  met - add a user
+  mre - displays cached output, channel wise.
+  nme - feed name
+  pwd - combines nickserv name/password into a sasl password
+  rem - removes a rss feed
+  rss - add a feed
+  sts - status
+  tdo - todo
+  thr - show the running threads
+  upt - uptime
 
 **PROGRAMMING**
 
-The ``opr`` package provides an Object class, that mimics a dict while using
+The ``gozerbot`` package provides an Object class, that mimics a dict while using
 attribute access and provides a save/load to/from json files on disk.
 Objects can be searched with database functions and uses read-only files
 to improve persistence and a type in filename for reconstruction. Methods are
@@ -51,8 +100,8 @@ factored out into functions to have a clean namespace to read JSON data into.
 
 basic usage is this::
 
->>> import opr
->>> o = opr.Object()
+>>> import gozerbot
+>>> o = gozerbot.Object()
 >>> o.key = "value"
 >>> o.key
 >>> 'value'
@@ -64,7 +113,7 @@ and values.
 
 load/save from/to disk::
 
->>> from opr import Object, load, save
+>>> from gozerbot import Object, load, save
 >>> o = Object()
 >>> o.key = "value"
 >>> p = save(o)
@@ -75,18 +124,23 @@ load/save from/to disk::
 
 great for giving objects peristence by having their state stored in files::
 
- >>> from opr import Object, save
+ >>> from gozerbot import Object, save
  >>> o = Object()
  >>> save(o)
- 'opr.obj.Object/2021-08-31/15:31:05.717063'
+ 'gozerbot.obj.Object/2021-08-31/15:31:05.717063'
 
-|
+
+**FILES**
+
+
+ | ``/usr/local/share/doc/gozerbot/*``
+ | ``/usr/local/share/gozerbot/gozerbot.service``
+
 
 **AUTHOR**
 
-| Bart Thate - operbot100@gmail.com
-|
+Bart Thate 
 
 **COPYRIGHT**
 
-| **OPR** is placed in the Public Domain. No Copyright, No License.
+**GOZERBOT** is placed in the Public Domain. No Copyright, No License.

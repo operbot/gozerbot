@@ -52,18 +52,18 @@ class NoUser(Exception):
 
 class Config(Default):
 
-    channel = ""
+    channel = "#gozerbot"
     control = "!"
-    nick = ""
+    nick = "gozerbot"
     password = ""
     port = 6667
-    realname = ""
+    realname = "python3 irc bot"
     sasl = False
     server = "localhost"
     servermodes = ""
     sleep = 60
-    username = ""
-    users = False
+    username = "gozerbot"
+    users = True
 
     def __init__(self):
         super().__init__()
