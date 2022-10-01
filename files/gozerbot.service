@@ -1,0 +1,14 @@
+[Unit]
+Description=GOZERBOT - python3 irc bot
+After=multi-user.target
+
+
+[Service]
+Type=simple
+User=gozerbot
+WorkingDirectory=/home/gozerbot/.gozerbot
+ExecStart=/usr/local/bin/gozerd
+CapabilityBoundingSet=CAP_NET_RAW
+
+[Install]
+WantedBy=multi-user.target
