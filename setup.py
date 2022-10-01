@@ -12,16 +12,21 @@ def read():
 
 
 setup(
-    name="opr",
-    version="2",
+    name="gozerbot",
+    version="100",
     author="Bart Thate",
     author_email="operbot100@gmail.com",
-    url="http://github.com/operbot/opr",
-    description="object programming runtime",
+    url="http://github.com/operbot/gozerbot",
+    description="python3 irc bot",
     long_description=read(),
     license="Public Domain",
-    packages=["opr", "opr.mod"],
-    scripts=["bin/opr"],
+    packages=["gozerbot", "gozerbot.mod"],
+    include_package_data=True,
+    data_files=[
+                ("share/gozerbot", ["files/gozerbot.service",]),
+               ],
+
+    scripts=["bin/gozerbot", "bin/gozerbotcmd", "bin/gozerbotctl", "bin/gozerbotd"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "License :: Public Domain",

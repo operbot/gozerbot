@@ -61,6 +61,8 @@ reading type from the object.
 
 **24/7**
 
+``adduser gozerbot``
+``mkdir /home/gozerbot/.gozerbot``
 ``cp /usr/local/share/gozerbot/gozerbot.service /etc/systemd/system``
 ``systemctl enable gozerbot --now``
 
