@@ -26,7 +26,7 @@ setup(
                 ("share/gozerbot", ["files/gozerbot.service",]),
                ],
 
-    scripts=["bin/gozerbot", "bin/gozerbotcmd", "bin/gozerbotctl", "bin/gozerbotd"],
+    scripts=["bin/gozerbot", "bin/gozercmd", "bin/gozerctl", "bin/gozerd"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "License :: Public Domain",
