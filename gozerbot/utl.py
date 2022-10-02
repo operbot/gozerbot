@@ -9,6 +9,9 @@ import pathlib
 import time
 
 
+from stat import ST_UID, ST_MODE, S_IMODE
+
+
 def __dir__():
     return (
             "cdir",
@@ -16,6 +19,7 @@ def __dir__():
             "fns",
             "fntime",
             "fnclass",
+            "permissions",
             "spl",
             "wait"
            )
@@ -124,6 +128,28 @@ def fnclass(path):
     if not pth:
         pth = path.split(os.sep)
     return pth[0]
+
+
+def permissions(ddir, umode):
+    try:
+        uid = os.getuid()  
+        gid = os.getgid()
+    except AttributeError:
+        return
+    try:
+        stat = os.stat(ddir)
+    except OSError:
+        return
+    if stat[ST_UID] != uid:
+        try:
+            os.chown(ddir, uid, gid)
+        except:
+            pass
+    if S_IMODE(stat[ST_MODE]) != umode:
+        try:
+            os.chmod(ddir, umode)
+        except:
+            handle_exception()
 
 
 def spl(txt):
