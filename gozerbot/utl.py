@@ -6,6 +6,7 @@
 
 import os
 import pathlib
+import pwd
 import time
 
 
@@ -130,9 +131,12 @@ def fnclass(path):
     return pth[0]
 
 
-def permissions(ddir, umode):
-    try:
+def permissions(ddir, username=None, umode=0o644):
+    if username:
+        uid = pwd.getpwnam(username)
+    else:
         uid = os.getuid()  
+    try:
         gid = os.getgid()
     except AttributeError:
         return
@@ -149,7 +153,7 @@ def permissions(ddir, umode):
         try:
             os.chmod(ddir, umode)
         except:
-            handle_exception()
+            pass
 
 
 def spl(txt):

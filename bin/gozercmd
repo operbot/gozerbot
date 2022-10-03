@@ -11,6 +11,7 @@ import sys
 
 from gozerbot import Client, Wd, parse, scan
 from gozerbot.run import docmd
+from gozerbot.utl import permissions
 
 
 Wd.workdir = os.path.expanduser("~/.gozerbot")
@@ -33,6 +34,7 @@ class CLI(Client):
 
 
 def main():
+    permissions(Wd.workdir, "gozerbot")
     cfg = parse(" ".join(sys.argv[1:]))
     cli = CLI()
     docmd(cli, cfg.otxt)
